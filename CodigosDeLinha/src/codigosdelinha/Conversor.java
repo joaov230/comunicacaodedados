@@ -92,7 +92,7 @@ public class Conversor {
     }
     
     // Bipolar Pseudoternário
-    // 0 é sinal médio, 1 é alto ou baixo (inverso do último bit 1)
+    // 1 é sinal médio, 0 é alto ou baixo (inverso do último bit 1)
     public void pseudoternarioCodificado (String str) {
         sinal.clear();
         char c;
