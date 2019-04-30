@@ -20,6 +20,8 @@ public class Conversor {
     ////////////////////////////
     // Os métodos receberão uma string (texto com 0s e 1s), que será analisada
     // e transformada para forma de sinal
+    /////////////
+    // As 2 primeiras posições do vetor devem ser ignoradas
     ////////////////////////////
     
     // NRZ-L
@@ -27,6 +29,8 @@ public class Conversor {
     public void nrzlCodificado (String str) {
         sinal.clear();
         char c;
+        sinal.add(ALTO);
+        sinal.add(ALTO);
         for (int i = 0; i < str.length(); i++) {
             c = str.charAt(i);
             if (c == '1') {
@@ -44,12 +48,10 @@ public class Conversor {
     public void nrziCodificado (String str) {
         sinal.clear();
         char c;
+        sinal.add(ALTO);
+        sinal.add(ALTO);
         for (int i = 0; i < str.length(); i++) {
             c = str.charAt(i);
-            if (i == 0) { // Se for o primeiro bit, sinal começa em alto sempre
-                sinal.add(ALTO);
-                sinal.add(ALTO);
-            }
             if (c == '1') {
                 Integer aux = inverteUltimoSinal();
                 sinal.add(aux);
@@ -68,6 +70,8 @@ public class Conversor {
         sinal.clear();
         char c;
         boolean alto = true;
+        sinal.add(ALTO);
+        sinal.add(ALTO);
         for (int i = 0; i < str.length(); i++) {
             c = str.charAt(i);
             if (c == '1') {
@@ -92,6 +96,8 @@ public class Conversor {
         sinal.clear();
         char c;
         boolean alto = true;
+        sinal.add(ALTO);
+        sinal.add(ALTO);
         for (int i = 0; i < str.length(); i++) {
             c = str.charAt(i);
             if (c == '0') {
@@ -114,6 +120,8 @@ public class Conversor {
     public void manchesterCodificado (String str) {
         sinal.clear();
         char c;
+        sinal.add(ALTO);
+        sinal.add(ALTO);
         for (int i = 0; i < str.length(); i++) {
             c = str.charAt(i);
             if (c == '0') {
@@ -122,6 +130,24 @@ public class Conversor {
             } else if (c == '1') {
                 sinal.add(BAIXO);
                 sinal.add(ALTO);
+            }
+        }
+    }
+    
+    // 0 inverte, 
+    public void manchesterDiferencialCodificado (String str) {
+        sinal.clear();
+        char c;
+        sinal.add(ALTO);
+        sinal.add(ALTO);
+        for (int i = 0; i < str.length(); i++) {
+            c = str.charAt(i);
+            if (c == '0') {
+                sinal.add(inverteUltimoSinal());
+                sinal.add(inverteUltimoSinal());
+            } else if (c == '1') {
+                sinal.add(getUltimoSinal());
+                sinal.add(inverteUltimoSinal());
             }
         }
     }
