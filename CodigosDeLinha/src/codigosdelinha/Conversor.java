@@ -134,7 +134,7 @@ public class Conversor {
         }
     }
     
-    // 0 inverte, 
+    // 0 inverte e inverte, 1 mantém e inverte
     public void manchesterDiferencialCodificado (String str) {
         sinal.clear();
         char c;
