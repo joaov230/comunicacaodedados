@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package codigosdelinha;
 
 import java.util.ArrayList;
@@ -115,6 +110,21 @@ public class Conversor {
         }
     }
     
+    // 0 é sinal alto e baixo, 1 é sinal baixo e alto
+    public void manchesterCodificado (String str) {
+        sinal.clear();
+        char c;
+        for (int i = 0; i < str.length(); i++) {
+            c = str.charAt(i);
+            if (c == '0') {
+                sinal.add(ALTO);
+                sinal.add(BAIXO);
+            } else if (c == '1') {
+                sinal.add(BAIXO);
+                sinal.add(ALTO);
+            }
+        }
+    }
     
     
     
