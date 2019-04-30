@@ -23,13 +23,105 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="400" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="jButtonNRZL" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jButtonNRZI" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jButtonAMI" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jButtonPT" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jTFBits" min="-2" pref="300" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="jButtonMAN" min="-2" pref="155" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jButtonMANDIF" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace pref="35" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="300" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jTFBits" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jButtonNRZL" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonNRZI" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonAMI" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonPT" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jButtonMAN" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonMANDIF" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="206" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JTextField" name="jTFBits">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="TextoAqui"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTFBitsActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Bits:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonNRZL">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="NRZL"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonNRZLActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonNRZI">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="NRZI"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonAMI">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="AMI"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonPT">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="PSEUDOTERN&#xc1;RIO"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonMAN">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="MANCHESTER"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonMANDIF">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="MANCHESTER DIFERENCIAL"/>
+      </Properties>
+    </Component>
+  </SubComponents>
 </Form>

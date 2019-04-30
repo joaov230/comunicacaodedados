@@ -27,21 +27,99 @@ public class Painel extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTFBits = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jButtonNRZL = new javax.swing.JButton();
+        jButtonNRZI = new javax.swing.JButton();
+        jButtonAMI = new javax.swing.JButton();
+        jButtonPT = new javax.swing.JButton();
+        jButtonMAN = new javax.swing.JButton();
+        jButtonMANDIF = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jTFBits.setText("TextoAqui");
+        jTFBits.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTFBitsActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Bits:");
+
+        jButtonNRZL.setText("NRZL");
+        jButtonNRZL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNRZLActionPerformed(evt);
+            }
+        });
+
+        jButtonNRZI.setText("NRZI");
+
+        jButtonAMI.setText("AMI");
+
+        jButtonPT.setText("PSEUDOTERNÁRIO");
+        jButtonPT.setToolTipText("");
+
+        jButtonMAN.setText("MANCHESTER");
+
+        jButtonMANDIF.setText("MANCHESTER DIFERENCIAL");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonNRZL)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonNRZI)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonAMI)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonPT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTFBits, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonMAN, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonMANDIF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTFBits, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonNRZL)
+                    .addComponent(jButtonNRZI)
+                    .addComponent(jButtonAMI)
+                    .addComponent(jButtonPT))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonMAN)
+                    .addComponent(jButtonMANDIF))
+                .addContainerGap(206, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTFBitsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFBitsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFBitsActionPerformed
+
+    private void jButtonNRZLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNRZLActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonNRZLActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +157,13 @@ public class Painel extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAMI;
+    private javax.swing.JButton jButtonMAN;
+    private javax.swing.JButton jButtonMANDIF;
+    private javax.swing.JButton jButtonNRZI;
+    private javax.swing.JButton jButtonNRZL;
+    private javax.swing.JButton jButtonPT;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextField jTFBits;
     // End of variables declaration//GEN-END:variables
 }
