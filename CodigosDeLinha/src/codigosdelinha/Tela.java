@@ -77,7 +77,7 @@ public class Tela extends Application {
                 }
                 
                 // Seta a string do textfield
-                //series.setName(tf.getText());
+                series.setName(tf.getText());
             }
         });
 
@@ -103,7 +103,7 @@ public class Tela extends Application {
                 
                 
                 // Seta a string do textfield
-                //series.setName();
+                series.setName(tf.getText());
             }
         });
         
@@ -128,7 +128,7 @@ public class Tela extends Application {
                 }
                 
                 // Seta a string do textfield
-                //series.setName();
+                series.setName(tf.getText());
             }
         });
         
@@ -153,7 +153,7 @@ public class Tela extends Application {
                 }
                 
                 // Seta a string do textfield
-                //series.setName();
+                series.setName(tf.getText());
             }
         });
         
@@ -168,7 +168,7 @@ public class Tela extends Application {
                 series.getData().clear();
                 
                
-                for (int i = 2; i < con.sinal.size(); i++) {
+                for (int i = 1; i < con.sinal.size(); i++) {
                     try {
                         series.getData().add(new XYChart.Data("" + i, con.sinal.get(i)));
                         series.getData().add(new XYChart.Data("" + i, con.sinal.get(i+1)));
@@ -178,7 +178,7 @@ public class Tela extends Application {
                 }
                 
                 // Seta a string do textfield
-                //series.setName();
+                series.setName(tf.getText());
             }
         });
 
@@ -202,6 +202,8 @@ public class Tela extends Application {
                     }
                 }
                 
+                // Seta a string do textfield
+                series.setName(tf.getText());
             }
         });
 
@@ -211,6 +213,7 @@ public class Tela extends Application {
             @Override
             public void handle(ActionEvent event) {
                 series.getData().clear();
+                series.setName("");
             }
         });
         
