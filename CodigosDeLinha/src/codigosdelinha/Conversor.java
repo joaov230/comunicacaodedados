@@ -15,7 +15,12 @@ public class Conversor {
     // ArrayList que vai armazenar o sinal (ALTO, MEDIO ou BAIXO)
     // Contem o dobro do tamanho da string de texto, pois cada bit é dividido pela metade
     // para facilitar a representação gráfica na tela
-    public ArrayList<Integer> sinal = new ArrayList<Integer>();
+    public ArrayList<Integer> sinal;
+    
+    public Conversor() {
+        sinal =  new ArrayList<Integer>();
+        sinal.clear();
+    }
     
     ////////////////////////////
     // Os métodos receberão uma string (texto com 0s e 1s), que será analisada
