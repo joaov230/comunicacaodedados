@@ -12,16 +12,21 @@ package comdados;
  */
 public class ComDados {
 
+    private int Port = 55455;
     private Client cliente;
     private Server servidor;
     
+    
     public ComDados () {
-        cliente = new Client();
-        servidor = new Server();
+        cliente = new Client(Port);
+        servidor = new Server(Port);
     }
+    
+    
     public static void main(String[] args) {
         ComDados programa = new ComDados();
         
+        ///////////////////
         // Cria as threads
         Thread threadCliente = new Thread() {
             @Override
@@ -37,15 +42,18 @@ public class ComDados {
             }
         };
         
+        ///////////////////
         // Inicia as threads
         threadServidor.start();
         threadCliente.start();
         
+        ///////////////////
         // Finaliza as threads
         try {
             threadServidor.join();
             threadCliente.join();
         } catch (Exception e) {
+            System.out.println(e);
             System.exit(0);
         }
         
