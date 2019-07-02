@@ -28,27 +28,26 @@ public class Server {
             ServerSocket servidor = new ServerSocket(port);
             System.out.println("Servidor iniciado!");
 
-            DataInputStream entrada;
+            String str = "";  // Str começa vazia
             
             // Tenta conectar o cliente com o servidor
-            try (Socket socket = servidor.accept()) {
+            Socket socket = servidor.accept();
                 
-                // Recebe a mensagem
-                entrada = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
-                String str = "";  // Str começa vazia
+            // Recebe a mensagem
+            DataInputStream entrada = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
                 
-                // Lê enquanto não receber "Cambio"
-                do {
-                    str = entrada.readUTF();
-                    System.out.println("Mensagem recebida: " + str);                    
-                } while (!str.equalsIgnoreCase("Cambio"));
-            }
+            // Lê enquanto não receber "Cambio"
+            do {
+                str = entrada.readUTF();
+                System.out.println("Mensagem recebida: " + str);                    
+            } while (!str.equalsIgnoreCase("Cambio"));
+            
             
             // Fecha todas as conexões
             entrada.close();
             servidor.close();
             System.out.println("Conexão fechada!");
-            
+
         } catch (Exception e) {
             System.out.println(e);
             System.exit(0);
