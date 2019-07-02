@@ -7,6 +7,7 @@ package comdados;
 
 import java.io.DataOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -21,6 +22,7 @@ public class Client {
     public Client(int port) {
         this.port = port;
     }
+    
     
     // Roda o cliente, que ENVIA mensagens
     public void run() {
