@@ -25,6 +25,7 @@ public class Client {
     // Roda o cliente, que ENVIA mensagens
     public void run() {
         try {
+            // Inicia a conexão
             Socket socket = new Socket ("127.0.0.1", port);
             System.out.println("Conectado com sucesso!");
             
@@ -37,7 +38,7 @@ public class Client {
                 str = entrada.nextLine();
                 
                 saida.writeUTF(str);
-                System.out.println("Mensagem: " + str);
+                System.out.println("Mensagem enviada: " + str);
             } while (!str.equals("Cambio"));
 
             

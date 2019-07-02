@@ -22,23 +22,20 @@ public class ComDados {
         servidor = new Server(Port);
     }
     
-    
-    public static void main(String[] args) {
-        ComDados programa = new ComDados();
-        
+    public void run () {
         ///////////////////
         // Cria as threads
         Thread threadCliente = new Thread() {
             @Override
             public void run() {
-                //cliente.run();
+                cliente.run();
             }
         };
         
         Thread threadServidor = new Thread() {
             @Override
             public void run() {
-                //servidor.run();
+                servidor.run();
             }
         };
         
@@ -56,7 +53,11 @@ public class ComDados {
             System.out.println(e);
             System.exit(0);
         }
-        
+    }
+    
+    public static void main(String[] args) {
+        ComDados programa = new ComDados();
+        programa.run();
     }
     
     
