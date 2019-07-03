@@ -33,23 +33,25 @@ public class Client {
     
     // Roda o cliente, que ENVIA mensagens
     public void run() throws Exception {
-
-        Scanner inFromUser = new Scanner(System.in);
+        // Cria um cliente UDP
         DatagramSocket clientSocket = new DatagramSocket();
  
+        // IP Address
 	InetAddress IPAddress = InetAddress.getByName(servidor);
  
-	byte[] sendData = new byte[1024];
- 
+	byte[] sendData = new byte[1024];   // Vetor de bytes a serem enviados
+        Scanner inFromUser = new Scanner(System.in);  // Leitor do usuário
         
         do {
             System.out.println("Digite o texto a ser enviado ao servidor: ");
-            String sentence = inFromUser.nextLine();
-            sendData = sentence.getBytes();
+            String sentence = inFromUser.nextLine(); // Lê do usuário
+            sendData = sentence.getBytes(); // Pega os bytes da sentença escrita pelo usuário
 
+            // Define o pacote de dados: dados a serem enviados, o tamanho dos dados, o IP address e a porta
             System.out.println("Texto em bytes: " + sendData);
             DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, port);
 
+            // Envia o pacote pelo DatagramSocket que foi criado
             System.out.println("Enviando pacote UDP para " + servidor + ":" + port);
             clientSocket.send(sendPacket); 
         } while (true);

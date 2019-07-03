@@ -27,18 +27,25 @@ public class Server {
     }
     
     public void run() throws Exception {
+        // Cria um server UDP
         DatagramSocket serverSocket = new DatagramSocket(port);
  
+        // Cria o vetor de bytes receptor
 	byte[] receiveData = new byte[1024];
         String sentence = "";
         
         do {
+            // Cria o pacote de dados que será recebido
             DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
             System.out.println("Servidor esperando por mensagem na porta " + port + ".");
+            
+            // Espera receber um pacote e salva no recievePacket
             serverSocket.receive(receivePacket);
-            sentence = new String(receivePacket.getData());
+            sentence = new String(receivePacket.getData());  // Salva os dados (.getData()) numa String
+            
             System.out.println("Mensagem recebida: " + sentence);
-            // InetAddress e porta usados para enviar um "ok" para o cliente indicando que a mensagem foi recebida 
+            // InetAddress e porta usados para enviar um "ok" para o cliente indicando que a mensagem foi recebida
+            // Ainda não implementado
             InetAddress IPAddress = receivePacket.getAddress();
             int porta = receivePacket.getPort();
         } while (true);
