@@ -5,6 +5,9 @@
  */
 package comdados;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 /**
  *
@@ -18,7 +21,7 @@ public class ComDados {
     
     
     public ComDados () {
-        cliente = new Client(Port);
+        cliente = new Client(Port, "localhost");
         servidor = new Server(Port);
     }
     
@@ -28,14 +31,22 @@ public class ComDados {
         Thread threadCliente = new Thread() {
             @Override
             public void run() {
-                cliente.run();
+                try {
+                    cliente.run();
+                } catch (Exception ex) {
+                    Logger.getLogger(ComDados.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         };
         
         Thread threadServidor = new Thread() {
             @Override
             public void run() {
-                servidor.run();
+                try {
+                    servidor.run();
+                } catch (Exception ex) {
+                    Logger.getLogger(ComDados.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         };
         

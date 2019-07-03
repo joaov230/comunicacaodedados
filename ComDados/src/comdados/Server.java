@@ -7,8 +7,12 @@ package comdados;
 
 import java.io.BufferedInputStream;
 import java.io.DataInputStream;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 
 /**
  *
@@ -22,35 +26,21 @@ public class Server {
         this.port = port;
     }
     
-    public void run() {
-        try {
-            // Inicia o servidor seguro
-            ServerSocket servidor = new ServerSocket(port);
-            System.out.println("Servidor iniciado!");
-
-            String str = "";  // Str começa vazia
-            
-            // Tenta conectar o cliente com o servidor
-            Socket socket = servidor.accept();
-                
-            // Recebe a mensagem
-            DataInputStream entrada = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
-                
-            // Lê enquanto não receber "Cambio"
-            do {
-                str = entrada.readUTF();
-                System.out.println("Mensagem recebida: " + str);                    
-            } while (!str.equalsIgnoreCase("Cambio"));
-            
-            
-            // Fecha todas as conexões
-            entrada.close();
-            servidor.close();
-            System.out.println("Conexão fechada!");
-
-        } catch (Exception e) {
-            System.out.println(e);
-            System.exit(0);
-        }
+    public void run() throws Exception {
+        DatagramSocket serverSocket = new DatagramSocket(port);
+ 
+	byte[] receiveData = new byte[1024];
+        String sentence = "";
+        
+        do {
+            DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
+            System.out.println("Servidor esperando por mensagem na porta " + port + ".");
+            serverSocket.receive(receivePacket);
+            sentence = new String(receivePacket.getData());
+            System.out.println("Mensagem recebida: " + sentence);
+            // InetAddress e porta usados para enviar um "ok" para o cliente indicando que a mensagem foi recebida 
+            InetAddress IPAddress = receivePacket.getAddress();
+            int porta = receivePacket.getPort();
+        } while (true);
     }
 }
