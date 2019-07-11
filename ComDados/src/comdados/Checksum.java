@@ -17,16 +17,39 @@ public class Checksum {
     
     public Checksum(final String data){
         this.data = new byte[data.length()];
+        
+        byte[] bytes = data.getBytes();
+        System.arraycopy(bytes, 0, this.data, 0, this.data.length);
     }
     
     public byte checksum() {
-        short sum = 0;
+        short soma = 0;
         
-        for(int i= 0; i < data.length; i++){
-            sum += data[i];
+        for(int i = 0; i < data.length; i++){
+            soma += data[i];
         }
-        byte sumInBytes = (byte) sum;
+        
+        byte somaEmBytes = (byte)soma;
 
-        return sumInBytes;
+        return somaEmBytes;
+    }
+    
+    public byte[] getData() {
+        byte[] pacote = new byte[data.length + 1];
+        System.arraycopy(data, 0, pacote, 0, data.length);
+
+        pacote[data.length] = checksum();
+
+        return pacote;
+    }
+
+    public static char[] toCharArray(final byte[] data) {
+        StringBuilder strBldr = new StringBuilder();
+        
+        for (byte b : data) {
+            strBldr.append(b);
+        }
+
+        return strBldr.toString().toCharArray();
     }
 }
