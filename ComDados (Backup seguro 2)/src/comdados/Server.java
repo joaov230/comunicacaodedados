@@ -48,10 +48,18 @@ public class Server {
                             break;
                         }
                     }
-                    // Nesse momento ele recebeu tudo e "i" é o tamanho do dado enviado
+                    // Nesse momento ele recebeu tudo e "i" é o tamanho do dado enviado (com checksum incluso)
                     
-                    byte[] bytesAux = new byte[i];
-                    
+                    byte[] bytesComChecksum = new byte[i];
+                    for (int j = 0; j < i; j++) {
+                        bytesComChecksum[j] = bytes[j];
+                    }
+                    byte[] bytesSemChecksum = new byte[i-1];
+                    for (int j = 0; j < i; j++) {
+                        bytesSemChecksum[j] = bytes[j];
+                    }
+                     
+                    Checksum frameVerificador = new Checksum(bytesSemChecksum.getData());
                     
                     System.out.println("Mensagem recebida: " + str);                    
                 } while (!str.equalsIgnoreCase("Cambio"));
