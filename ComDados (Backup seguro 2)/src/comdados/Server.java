@@ -55,11 +55,13 @@ public class Server {
                         bytesComChecksum[j] = bytes[j];
                     }
                     byte[] bytesSemChecksum = new byte[i-1];
-                    for (int j = 0; j < i; j++) {
+                    for (int j = 0; j < (i-1); j++) {
                         bytesSemChecksum[j] = bytes[j];
                     }
                      
-                    Checksum frameVerificador = new Checksum(bytesSemChecksum.getData());
+                    boolean ok = Checksum.testChecksum(bytesSemChecksum, bytesComChecksum[i-1]);
+                    
+                    System.out.println("Checksum: " + ok);
                     
                     System.out.println("Mensagem recebida: " + str);                    
                 } while (!str.equalsIgnoreCase("Cambio"));
