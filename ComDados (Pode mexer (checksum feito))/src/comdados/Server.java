@@ -36,12 +36,37 @@ public class Server {
                 // Recebe a mensagem
                 entrada = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
                 String str = "";  // Str começa vazia
+                byte[] bytes = new byte[254];
+                int i = 0;
                 
                 // Lê enquanto não receber "Cambio"
                 do {
-                    str = entrada.readUTF();
-                    System.out.println("Mensagem recebida: " + str);                    
-                } while (!str.equalsIgnoreCase("Cambio"));
+                    System.out.println("Entrou no do while");
+                    
+                    byte tam = entrada.readByte();
+                    for (i = 0; i < tam; i++) {
+                        bytes[i] = entrada.readByte();
+                        System.out.println("Leu um byte");
+                    }
+                    // Nesse momento ele recebeu tudo e "i" é o tamanho do dado enviado (com checksum incluso)
+                    
+                    byte[] bytesComChecksum = new byte[i];
+                    for (int j = 0; j < i; j++) {
+                        bytesComChecksum[j] = bytes[j];
+                    }
+                    byte[] bytesSemChecksum = new byte[i-1];
+                    for (int j = 0; j < (i-1); j++) {
+                        bytesSemChecksum[j] = bytes[j];
+                    }
+                     
+                    boolean ok = Checksum.testChecksum(bytesSemChecksum, bytesComChecksum[i-1]);
+                    
+                    System.out.println("Checksum: " + ok);
+                    
+                    str = new String(bytesSemChecksum, "UTF-8");
+                    
+                    System.out.println("Mensagem recebida: " + str);
+                } while (!str.equals("Cambio"));
             }
             
             // Fecha todas as conexões

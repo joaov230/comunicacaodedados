@@ -52,4 +52,20 @@ public class Checksum {
 
         return strBldr.toString().toCharArray();
     }
+    
+    public static boolean testChecksum (byte[] verificador, byte checksum) {
+        short soma = 0;
+        
+        for(int i = 0; i < verificador.length; i++){
+            soma += verificador[i];
+        }
+        
+        byte somaEmBytes = (byte)soma;
+        
+        if (somaEmBytes == checksum) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
