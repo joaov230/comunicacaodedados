@@ -48,6 +48,7 @@ public class Server {
             // Ainda não implementado
             InetAddress IPAddress = receivePacket.getAddress();
             int porta = receivePacket.getPort();
+            receiveData = new byte[1024];
         } while (true);
     }
 }

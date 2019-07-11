@@ -45,7 +45,7 @@ public class Client {
         do {
             System.out.println("Digite o texto a ser enviado ao servidor: ");
             String sentence = inFromUser.nextLine(); // Lê do usuário
-            sendData = sentence.getBytes(); // Pega os bytes da sentença escrita pelo usuário
+            sendData = sentence.getBytes(); // Pega os bytes da sentença escrita pelo usuário]
 
             // Define o pacote de dados: dados a serem enviados, o tamanho dos dados, o IP address e a porta
             System.out.println("Texto em bytes: " + sendData);
@@ -53,7 +53,7 @@ public class Client {
 
             // Envia o pacote pelo DatagramSocket que foi criado
             System.out.println("Enviando pacote UDP para " + servidor + ":" + port);
-            clientSocket.send(sendPacket); 
+            clientSocket.send(sendPacket);
         } while (true);
    }
 }
