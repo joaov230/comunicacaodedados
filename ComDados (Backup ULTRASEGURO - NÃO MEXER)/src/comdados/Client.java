@@ -44,10 +44,7 @@ public class Client {
             System.out.println("Conectado com sucesso!");
             
             // Receptor
-//            ServerSocket servidorDoClient = new ServerSocket(port);
-  //          Socket socketAck = servidorDoClient.accept();
             DataInputStream ack = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
-            //byte verificaAck;
             
             Scanner entrada = new Scanner(System.in);
             String str = "";
@@ -85,18 +82,6 @@ public class Client {
                     
                     // Inicia o timer e espera receber ack
                     do {
-                       // Timer timer = new Timer();
-                       // timer.scheduleAtFixedRate(new TimerTask() {
-                       //     public void run () {
-                       //         try {
-                       //             verificaAck = ack.readByte();
-                       //         } catch (Exception e) {
-                       //             System.exit(0);
-                       //         }
-                       //     }
-                       // }, 0, 2000);
-                       
-                       
                         ExecutorService executor = Executors.newSingleThreadExecutor();
                         Future<String> future = executor.submit(new Callable() {
                             public String call() throws Exception {
@@ -105,7 +90,7 @@ public class Client {
                             }
                         });
                         
-                        future.get(2, TimeUnit.SECONDS);
+                        future.get(3, TimeUnit.SECONDS);
                         
                         if (verificaAck != 75) {
                             saida.write(sendDataAux);

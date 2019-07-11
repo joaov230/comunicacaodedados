@@ -51,7 +51,6 @@ public class Server {
                     for (i = 0; i < tam; i++) {
                         bytes[i] = entrada.readByte();
                     }
-                    saida.write(75);
                     
                     // Nesse momento ele recebeu tudo e "i" é o tamanho do dado enviado (com checksum incluso)
                     
@@ -65,8 +64,11 @@ public class Server {
                     }
                      
                     boolean ok = Checksum.testChecksum(bytesSemChecksum, bytesComChecksum[i-1]);
-                    
-                    //System.out.println("Checksum: " + ok);
+                    if (ok) {
+                        saida.write(75);
+                    } else {
+                        continue;
+                    }
                     
                     str = new String(bytesSemChecksum, "UTF-8");
                     
