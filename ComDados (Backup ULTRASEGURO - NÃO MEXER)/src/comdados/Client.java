@@ -5,9 +5,22 @@
  */
 package comdados;
 
+import java.io.BufferedInputStream;
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -16,6 +29,7 @@ import java.util.Scanner;
 public class Client {
     
     private final int port;
+    byte verificaAck;
     
     // Inicializador
     public Client(int port) {
@@ -29,6 +43,12 @@ public class Client {
             Socket socket = new Socket ("127.0.0.1", port);
             System.out.println("Conectado com sucesso!");
             
+            // Receptor
+//            ServerSocket servidorDoClient = new ServerSocket(port);
+  //          Socket socketAck = servidorDoClient.accept();
+            DataInputStream ack = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
+            //byte verificaAck;
+            
             Scanner entrada = new Scanner(System.in);
             String str = "";
             
@@ -36,24 +56,68 @@ public class Client {
             
             do {
                 str = entrada.nextLine();
+                int cont = 0;
+                char[] strBuffer = new char[8];
                 
-                Checksum frame = new Checksum(str);
+                do {
+                    for (int j = 0; j < 8; j++) {
+                        strBuffer[j] = ' ';
+                    }
+                    for (int j = 0; j < 8 && cont < str.length(); j++) {
+                        strBuffer[j] = str.charAt(cont);
+                        cont++;
+                    }
+                    
+                    Checksum frame = new Checksum(strBuffer);
                 
-                byte[] sendData = frame.getBytes();
-                
-                byte[] sendDataAux = new byte[sendData.length+1];
-                sendDataAux[0] = (byte)sendData.length;
-                
-                int i = 1;
-                for (int j = 0; j < sendData.length; j++) {
-                    sendDataAux[i] = sendData[j];
-                    i++;
-                }
-                
-                saida.write(sendDataAux);
-                
+                    byte[] sendData = frame.getBytes();
+
+                    byte[] sendDataAux = new byte[sendData.length+1];
+                    sendDataAux[0] = (byte)sendData.length;
+
+                    int i = 1;
+                    for (int j = 0; j < sendData.length; j++) {
+                        sendDataAux[i] = sendData[j];
+                        i++;
+                    }
+
+                    saida.write(sendDataAux);
+                    
+                    // Inicia o timer e espera receber ack
+                    do {
+                       // Timer timer = new Timer();
+                       // timer.scheduleAtFixedRate(new TimerTask() {
+                       //     public void run () {
+                       //         try {
+                       //             verificaAck = ack.readByte();
+                       //         } catch (Exception e) {
+                       //             System.exit(0);
+                       //         }
+                       //     }
+                       // }, 0, 2000);
+                       
+                       
+                        ExecutorService executor = Executors.newSingleThreadExecutor();
+                        Future<String> future = executor.submit(new Callable() {
+                            public String call() throws Exception {
+                                verificaAck = ack.readByte();
+                                return "OK";
+                            }
+                        });
+                        
+                        future.get(2, TimeUnit.SECONDS);
+                        
+                        if (verificaAck != 75) {
+                            saida.write(sendDataAux);
+                        }
+                        executor.shutdownNow();
+                    } while (verificaAck != 75);
+                    
+                    verificaAck = 0;
+                } while (cont < str.length());
+                System.out.println();
                 System.out.println("Mensagem enviada: " + str);
-            } while (!str.equalsIgnoreCase("Cambio"));
+            } while (!str.equalsIgnoreCase("Sair"));
             
             // Depois de tudo, termina a conexão
             entrada.close();

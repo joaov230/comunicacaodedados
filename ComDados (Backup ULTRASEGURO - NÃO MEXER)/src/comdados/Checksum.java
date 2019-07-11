@@ -15,10 +15,13 @@ public class Checksum {
     
     private byte[] data;
     
-    public Checksum(final String data){
-        this.data = new byte[data.length()];
+    public Checksum(final char[] data){
         
-        byte[] bytes = data.getBytes();
+        String str = String.valueOf(data);
+        
+        this.data = new byte[str.length()];
+        
+        byte[] bytes = str.getBytes();
         System.arraycopy(bytes, 0, this.data, 0, this.data.length);
     }
     

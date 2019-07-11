@@ -7,6 +7,7 @@ package comdados;
 
 import java.io.BufferedInputStream;
 import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -29,10 +30,15 @@ public class Server {
             System.out.println("Servidor iniciado!");
 
             DataInputStream entrada;
+
+            // Envia as coisa
+            //Socket socketDoServidor = new Socket("127.0.0.1", port);
+
             
             // Tenta conectar o cliente com o servidor
             try (Socket socket = servidor.accept()) {
-                
+
+                DataOutputStream saida = new DataOutputStream(socket.getOutputStream());                
                 // Recebe a mensagem
                 entrada = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
                 String str = "";  // Str começa vazia
@@ -44,8 +50,9 @@ public class Server {
                     byte tam = entrada.readByte();
                     for (i = 0; i < tam; i++) {
                         bytes[i] = entrada.readByte();
-                        //System.out.println("Leu um byte");
                     }
+                    saida.write(75);
+                    
                     // Nesse momento ele recebeu tudo e "i" é o tamanho do dado enviado (com checksum incluso)
                     
                     byte[] bytesComChecksum = new byte[i];
@@ -59,12 +66,12 @@ public class Server {
                      
                     boolean ok = Checksum.testChecksum(bytesSemChecksum, bytesComChecksum[i-1]);
                     
-                    System.out.println("Checksum: " + ok);
+                    //System.out.println("Checksum: " + ok);
                     
                     str = new String(bytesSemChecksum, "UTF-8");
                     
-                    System.out.println("Mensagem recebida: " + str);
-                } while (!str.equalsIgnoreCase("Cambio"));
+                    System.out.print(str);
+                } while (!str.equalsIgnoreCase("Sair"));
             }
             
             // Fecha todas as conexões
