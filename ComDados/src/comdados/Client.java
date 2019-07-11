@@ -44,12 +44,12 @@ public class Client {
         
         do {
             System.out.println("Digite o texto a ser enviado ao servidor: ");
-            ///////////////////
+            
             String sentence = inFromUser.nextLine(); // Lê do usuário
             Checksum frame = new Checksum(sentence);
             
             // Bytes do frame
-            sendData = frame.getData();
+            sendData = frame.getBytes();
             
             // Define o pacote de dados: dados a serem enviados, o tamanho dos dados, o IP address e a porta
             DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, port);

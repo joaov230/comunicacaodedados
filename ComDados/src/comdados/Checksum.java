@@ -34,7 +34,7 @@ public class Checksum {
         return somaEmBytes;
     }
     
-    public byte[] getData() {
+    public byte[] getBytes() {
         byte[] pacote = new byte[data.length + 1];
         System.arraycopy(data, 0, pacote, 0, data.length);
 
