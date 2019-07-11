@@ -39,6 +39,7 @@ public class Checksum {
         System.arraycopy(data, 0, pacote, 0, data.length);
 
         pacote[data.length] = checksum();
+        //pacote[data.length] += 1;
 
         return pacote;
     }

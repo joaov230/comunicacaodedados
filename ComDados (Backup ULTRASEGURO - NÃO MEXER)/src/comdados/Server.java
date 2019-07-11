@@ -41,8 +41,6 @@ public class Server {
                 
                 // Lê enquanto não receber "Cambio"
                 do {
-                    System.out.println("Entrou no do while");
-                    
                     byte tam = entrada.readByte();
                     for (i = 0; i < tam; i++) {
                         bytes[i] = entrada.readByte();
