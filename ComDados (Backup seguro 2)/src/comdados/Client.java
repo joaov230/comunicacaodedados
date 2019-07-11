@@ -41,6 +41,15 @@ public class Client {
                 
                 byte[] sendData = frame.getBytes();
                 
+                byte[] sendDataAux = new byte[sendData.length+1];
+                sendDataAux[0] = (byte)sendData.length;
+                
+                int i = 1;
+                for (int j = 0; j < sendData.length; j++) {
+                    sendDataAux[i] = sendData[j];
+                    i++;
+                }
+                
                 saida.write(sendData);
                 
                 System.out.println("Mensagem enviada: " + str);
