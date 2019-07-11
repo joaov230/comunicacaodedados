@@ -50,7 +50,7 @@ public class Client {
                     i++;
                 }
                 
-                saida.write(sendData);
+                saida.write(sendDataAux);
                 
                 System.out.println("Mensagem enviada: " + str);
             } while (!str.equals("Cambio"));

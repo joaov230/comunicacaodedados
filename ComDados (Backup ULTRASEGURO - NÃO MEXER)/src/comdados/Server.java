@@ -63,6 +63,8 @@ public class Server {
                     
                     System.out.println("Checksum: " + ok);
                     
+                    str = new String(bytesSemChecksum, "UTF-8");
+                    
                     System.out.println("Mensagem recebida: " + str);
                 } while (!str.equals("Cambio"));
             }
