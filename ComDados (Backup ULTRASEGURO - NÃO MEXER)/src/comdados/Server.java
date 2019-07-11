@@ -44,7 +44,7 @@ public class Server {
                     byte tam = entrada.readByte();
                     for (i = 0; i < tam; i++) {
                         bytes[i] = entrada.readByte();
-                        System.out.println("Leu um byte");
+                        //System.out.println("Leu um byte");
                     }
                     // Nesse momento ele recebeu tudo e "i" é o tamanho do dado enviado (com checksum incluso)
                     
@@ -64,13 +64,13 @@ public class Server {
                     str = new String(bytesSemChecksum, "UTF-8");
                     
                     System.out.println("Mensagem recebida: " + str);
-                } while (!str.equals("Cambio"));
+                } while (!str.equalsIgnoreCase("Cambio"));
             }
             
             // Fecha todas as conexões
             entrada.close();
             servidor.close();
-            System.out.println("Conexão fechada!");
+            System.out.println("Servidor fechado!");
             
         } catch (Exception e) {
             System.out.println(e);

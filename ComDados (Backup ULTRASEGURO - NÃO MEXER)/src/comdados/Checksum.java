@@ -43,16 +43,6 @@ public class Checksum {
 
         return pacote;
     }
-
-    public static char[] toCharArray(final byte[] data) {
-        StringBuilder strBldr = new StringBuilder();
-        
-        for (byte b : data) {
-            strBldr.append(b);
-        }
-
-        return strBldr.toString().toCharArray();
-    }
     
     public static boolean testChecksum (byte[] verificador, byte checksum) {
         short soma = 0;

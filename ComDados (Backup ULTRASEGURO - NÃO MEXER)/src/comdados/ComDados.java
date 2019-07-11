@@ -49,6 +49,7 @@ public class ComDados {
         try {
             threadServidor.join();
             threadCliente.join();
+            System.out.println("Conexão Fechada!");
         } catch (Exception e) {
             System.out.println(e);
             System.exit(0);

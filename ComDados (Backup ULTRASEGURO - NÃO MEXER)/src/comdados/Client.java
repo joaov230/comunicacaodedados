@@ -53,13 +53,14 @@ public class Client {
                 saida.write(sendDataAux);
                 
                 System.out.println("Mensagem enviada: " + str);
-            } while (!str.equals("Cambio"));
-
+            } while (!str.equalsIgnoreCase("Cambio"));
             
             // Depois de tudo, termina a conexão
             entrada.close();
             saida.close();
             socket.close();
+
+            System.out.println("Client Fechado!");
             
         } catch (Exception e) {
             System.out.println(e);
