@@ -42,6 +42,7 @@ public class Server {
             // Espera receber um pacote e salva no recievePacket
             serverSocket.receive(receivePacket);
             
+            
             sentence = new String(receivePacket.getData());  // Salva os dados (.getData()) numa String
             
             System.out.println("Mensagem recebida: " + sentence);

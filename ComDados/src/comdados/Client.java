@@ -50,6 +50,7 @@ public class Client {
             
             // Bytes do frame
             sendData = frame.getBytes();
+            sendData[1023] = frame.checksum();
             
             // Define o pacote de dados: dados a serem enviados, o tamanho dos dados, o IP address e a porta
             DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, port);

@@ -38,8 +38,6 @@ public class Checksum {
         byte[] pacote = new byte[data.length + 1];
         System.arraycopy(data, 0, pacote, 0, data.length);
 
-        pacote[data.length] = checksum();
-
         return pacote;
     }
 
